@@ -32,16 +32,24 @@ WebSocketServer.on('connection', (socket) => {
                     const peers = store.SearchExclude(new Client(socket._id));
                     (peers && peers.length > 0) ?
                         WebSocketServer.clients.forEach((client) => {
-                            if (client._id !== socket._id) client.send(JSON.stringify(Message));
+                            if ((client._id !== socket._id) &&
+                                (client._socketInfo.roomid === socket._socketInfo.roomid)) {
+                                console.log(`WebSocketServer: Relaying message from ${socket._id} to ${client._id}`);
+                                client.send(JSON.stringify(Message));
+                            }
                         })
                         :
                         console.log(`WebSocketServer: No peers found ${socket._id}`);
                     break;
                 case MessageTypes.info:
                     const client = store.Search(new Client(socket._id));
-                    client ?
-                        client.socketInfo = Message.content :
+                    console.log(client);
+                    if (client) {
+                        socket['_socketInfo'] = Message.content;
+                        client.socketInfo = Message.content;
+                    } else {
                         console.log(`WebSocketServer: Client not found ${socket._id}`);
+                    }
                     break;
 
                 default:
