@@ -16,7 +16,7 @@ RUN npm install
 COPY . .
 
 # build application
-RUN npm run build:prod
+RUN npm run build
 
 # remove development dependencies
 RUN npm prune --production
@@ -32,9 +32,8 @@ WORKDIR /usr/src/app
 
 # copy from build image
 COPY --from=BUILD_IMAGE /usr/src/app/dist ./dist
-COPY --from=BUILD_IMAGE /usr/src/app/public ./dist/public
 COPY --from=BUILD_IMAGE /usr/src/app/node_modules ./node_modules
 
-EXPOSE 5959
+EXPOSE 7775
 
 CMD [ "node", "./dist/main.js" ]
