@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "build": "webpack"
   },
   "dependencies": {
     "uuid": "^9.0.0",
