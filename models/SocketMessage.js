@@ -3,11 +3,11 @@ class SocketMessage {
     type;
     content;
     timestamp;
-    constructor(_ = { _id, _type, _content, _timestamp: new Date().toUTCString() }) {
-        this.id = _._id;
-        this.type = _._type;
-        this.content = _._content;
-        this.timestamp = _._timestamp;
+    constructor(_ = { id, type, content }) {
+        this.id = _.id;
+        this.type = _.type;
+        this.content = _.content;
+        this.timestamp = new Date().toUTCString();
     }
 }
 

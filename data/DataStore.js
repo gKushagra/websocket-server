@@ -9,15 +9,15 @@ class DataStore {
     }
 
     Remove(client) {
-        this.clients = this.clients.filter(c => c._id !== client._id);
+        this.clients = this.clients.filter(c => c.id !== client.id);
     }
 
     Search(client) {
-        return this.clients.find(c => client._id === c._id);
+        return this.clients.find(c => client.id === c.id);
     }
 
     SearchExclude(client) {
-        return this.clients.filter(c => c._id !== client._id);
+        return this.clients.filter(c => c.id !== client.id);
     }
 }
 

@@ -1,9 +1,9 @@
 class Client {
-    _id;
-    _socketInfo = { name: null, roomid: null }
+    id;
+    socketInfo = { name: null, roomid: null }
 
-    constructor(id) {
-        this._id = id;
+    constructor(_id) {
+        this.id = _id;
     }
 }
 
